@@ -1,11 +1,22 @@
 package com.cancelpwnz.mockback.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.Objects;
 
+@Schema( example = "{\"id\": 1, \"name\": \"John Doe\", \"age\": 30, \"married\": true, \"startWorkSt\": \"2022-01-01T00:00:00Z\", \"chief\": {\n" +
+        "      \"id\": 2,\n" +
+        "      \"name\": \"John Smith\",\n" +
+        "      \"age\": 22,\n" +
+        "      \"married\": false,\n" +
+        "      \"startWorkSt\": \"2021-01-01T00:00:00Z\",\n" +
+        "      \"chief\": null\n" +
+        "    }}")
 public class Employee {
 
     private Long id;
@@ -18,6 +29,7 @@ public class Employee {
     private Boolean married;
     @NotNull
     private Instant startWorkSt;
+    //@Schema(implementation = Employee.class)
     private Employee chief;
 
     public Employee() {
